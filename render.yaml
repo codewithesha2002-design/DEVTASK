@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: devtask-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/tasks
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production

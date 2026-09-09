@@ -187,8 +187,19 @@ The production files are generated in `frontend/dist`.
 A simple low-cost deployment is:
 
 - Frontend: Vercel or Netlify using `frontend` as the project directory and `npm run build` as the build command.
-- Backend: Render, Azure App Service, or another .NET-capable host using `dotnet publish -c Release`.
+- Backend: Render using the included `render.yaml` and `backend/Dockerfile`.
 - Configuration: set `VITE_API_URL` in the frontend host to the deployed API URL ending in `/api`.
+
+### Render Backend Settings
+
+If creating the Render service manually, use these values:
+
+- **Root Directory:** `backend` (not `backend/backend`)
+- **Runtime:** Docker
+- **Dockerfile Path:** `./Dockerfile`
+- **Health Check Path:** `/api/tasks`
+
+The included `render.yaml` configures these settings automatically when creating a Blueprint. Do not add `backend/` to the Dockerfile path after setting the root directory, because Render then looks for the invalid path `backend/backend`.
 
 SQLite is excellent for this demo and local development, but many free cloud services use ephemeral disks or do not guarantee persistence for a local file. For real hosted data, replace SQLite with PostgreSQL and set the backend connection string through an environment variable. Restrict CORS to the deployed frontend origin before production launch.
 
