@@ -194,9 +194,11 @@ SQLite is excellent for this demo and local development, but many free cloud ser
 
 ## Screenshots
 
-Add screenshots here after deployment:
+Dashboard preview:
 
-- `docs/dashboard.png`
+![DevTask dashboard](docs/dashboard.png)
+
+Additional screenshots to add after deployment:
 - `docs/task-modal.png`
 - `docs/mobile-view.png`
 
