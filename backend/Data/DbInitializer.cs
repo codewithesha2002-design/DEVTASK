@@ -8,6 +8,8 @@ public static class DbInitializer
     public static async Task InitializeAsync(DevTaskDbContext dbContext)
     {
         await dbContext.Database.EnsureCreatedAsync();
+        await dbContext.Database.ExecuteSqlRawAsync("CREATE TABLE IF NOT EXISTS Users (Id INTEGER NOT NULL CONSTRAINT PK_Users PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Email TEXT NOT NULL, PasswordHash TEXT NOT NULL, CreatedAt TEXT NOT NULL)");
+        await dbContext.Database.ExecuteSqlRawAsync("CREATE UNIQUE INDEX IF NOT EXISTS IX_Users_Email ON Users (Email)");
         if (await dbContext.Tasks.AnyAsync())
         {
             return;

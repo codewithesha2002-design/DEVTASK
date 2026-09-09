@@ -14,6 +14,7 @@ DevTask is a focused full-stack task manager for developers. It gives a small te
 - Loading, empty, error, confirmation, and toast feedback states
 - Swagger/OpenAPI documentation
 - Configurable frontend API URL through `VITE_API_URL`
+- Self-service account registration with validated email and hashed password storage
 
 ## Tech Stack
 
@@ -71,6 +72,7 @@ frontend/
 | PUT | `/api/tasks/{id}` | Update a task |
 | DELETE | `/api/tasks/{id}` | Delete a task |
 | PATCH | `/api/tasks/{id}/complete` | Toggle completion |
+| POST | `/api/auth/register` | Register a new user account |
 
 Example request:
 
@@ -84,6 +86,8 @@ Example request:
 ```
 
 The API returns standard status codes including `200`, `201`, `204`, `400`, and `404`. The API automatically creates `backend/devtask.db` and seeds five demo tasks on first launch.
+
+Registration accepts a name, email, and password of at least eight characters. Emails are normalized and unique. Passwords are stored as PBKDF2 hashes; the registration response never returns the password or password hash. This MVP does not yet issue login tokens.
 
 ## Installation
 

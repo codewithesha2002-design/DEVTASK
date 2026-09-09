@@ -1,5 +1,18 @@
 import type { Task, TaskInput } from '../types/task';
 
+export interface RegisterInput {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface RegisteredUser {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: string;
+}
+
 const apiUrl = (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:5050/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
@@ -29,4 +42,8 @@ export const tasksApi = {
   update: (id: number, input: TaskInput) => request<Task>(`/tasks/${id}`, { method: 'PUT', body: JSON.stringify(input) }),
   remove: (id: number) => request<void>(`/tasks/${id}`, { method: 'DELETE' }),
   toggleComplete: (id: number) => request<Task>(`/tasks/${id}/complete`, { method: 'PATCH' }),
+};
+
+export const authApi = {
+  register: (input: RegisterInput) => request<RegisteredUser>('/auth/register', { method: 'POST', body: JSON.stringify(input) }),
 };
