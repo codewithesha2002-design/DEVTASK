@@ -198,9 +198,13 @@ Dashboard preview:
 
 ![DevTask dashboard](docs/dashboard.png)
 
-Additional screenshots to add after deployment:
-- `docs/task-modal.png`
-- `docs/mobile-view.png`
+Task modal:
+
+![DevTask task modal](docs/task-modal.png)
+
+Mobile dashboard:
+
+![DevTask mobile dashboard](docs/mobile-view.png)
 
 ## Future Improvements
 
